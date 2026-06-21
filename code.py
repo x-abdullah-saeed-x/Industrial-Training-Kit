@@ -6,7 +6,7 @@ from sklearn.preprocessing import LabelEncoder
 
 df = pd.read_csv('Dataset for Data Analytics.csv')
 
-# ==================================== PHASE : 1 # ====================================
+# ==================================== PHASE - 1 ====================================
 print("Handling Missing Values...")
 
 for features in df.columns:
@@ -91,6 +91,7 @@ for features in df.columns:
 
 print("Missing Values Handled Successfully")
 print("-------------------------------------")
+
 print("Handling Outliers...")
 
 for features in df.columns:
@@ -103,5 +104,31 @@ for features in df.columns:
         df[features] = df[features].clip(lower=lower_bound, upper=upper_bound)
 
 print("Outliers Handled Successfully")
+print("-------------------------------------")
+
+#===================================== PHASE - 2 ====================================
+print("Encoding Categorical Variables...")
+
+non_numeric_df=df.select_dtypes(include=['object', 'string'])
+count_labels=non_numeric_df.nunique()
+low_cardinality = count_labels[count_labels <= 10].index.tolist()
+
+if low_cardinality:
+    df = pd.get_dummies(df, columns=low_cardinality, drop_first=True, dtype=int)
+
+print("Categorical Variables Encoded Successfully")
+print("-------------------------------------")
+
+print("Fixing Multicollinearity...")
+
+numeric_df=df.select_dtypes(include=[np.number])
+corr_matrix=numeric_df.corr().abs()
+upper_tri_matrix=corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
+high_corr_mask = (upper_tri_matrix > 0.8).any(axis=0)
+high_corr_cols = high_corr_mask[high_corr_mask].index.tolist()
+df=df.drop(columns=high_corr_cols)
+
+print("Multicollinearity Fixed Successfully")
+print("-------------------------------------")
 
 
