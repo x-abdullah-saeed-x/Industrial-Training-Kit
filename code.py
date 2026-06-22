@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
 from sklearn.preprocessing import LabelEncoder
+import pandera as pa
 
 df = pd.read_csv('Dataset for Data Analytics.csv')
 
@@ -131,4 +132,17 @@ df=df.drop(columns=high_corr_cols)
 print("Multicollinearity Fixed Successfully")
 print("-------------------------------------")
 
+#===================================== PHASE - 3 ====================================
+
+print("Securing Database Design and Scheme using Pandera...")
+
+inferred_schema=pa.infer_schema(df)
+with open("schema.py", "w") as file:
+    file.write(inferred_schema.to_script())
+    
+print("Database Design and Scheme Secured Successfully")
+print("-------------------------------------")
+
+print("Bridging training-serving gap using Feeast...")
+df.to_csv("training_data.csv", index=False)
 
