@@ -2,9 +2,9 @@ from pandera import DataFrameSchema, Column, Check, Index, MultiIndex
 
 schema = DataFrameSchema(
     columns={
-        "OrderID": Column(dtype="string[python]"),
-        "Date": Column(dtype="string[python]"),
-        "CustomerID": Column(dtype="string[python]"),
+        "OrderID": Column(dtype="object"),
+        "Date": Column(dtype="object"),
+        "CustomerID": Column(dtype="object"),
         "Quantity": Column(
             dtype="int64",
             checks=[
@@ -27,8 +27,8 @@ schema = DataFrameSchema(
                 ),
             ],
         ),
-        "ShippingAddress": Column(dtype="string[python]"),
-        "TrackingNumber": Column(dtype="string[python]"),
+        "ShippingAddress": Column(dtype="object"),
+        "TrackingNumber": Column(dtype="object"),
         "ItemsInCart": Column(
             dtype="int64",
             checks=[

@@ -143,3 +143,6 @@ with open("schema.py", "w") as file:
 print("Database Design and Scheme Secured Successfully")
 print("-------------------------------------")
 
+print("Bridging training-serving gap using Feeast...")
+df.to_csv("training_data.csv", index=False)
+
