@@ -1,48 +1,65 @@
-# Advanced EDA & Feature Engineering (Project 1)
+# Industrial Training Kit
 
-## 📌 Project Overview
-[cite_start]Welcome to **Project 1: Advanced EDA & Feature Engineering**, an enterprise-grade data engineering project developed under the **DecodeLabs Industrial Training Kit (Batch 2026)**[cite: 134, 135, 158]. 
-
-[cite_start]Machine learning estimators are numerical optimization algorithms that operate strictly on real-numbered coordinate spaces[cite: 206]. [cite_start]If low-fidelity, unrefined data enters the pipeline, the system will flawlessly optimize for incorrect patterns[cite: 207]. [cite_start]This project implements rigorous, rules-based statistical logic over arbitrary guesswork to build production-ready data pipelines [cite: 159, 240][cite_start], ensuring the highest structural engineering of mathematical truth before feeding downstream models[cite: 208].
+The **Industrial Training Kit** is an automated, high-efficiency data preprocessing and feature engineering pipeline. Designed to transform raw, "dirty" datasets into clean, model-ready inputs, this kit streamlines the data wrangling process to ensure robust machine learning workflows.
 
 ---
 
-## 🏗️ System Architecture: The IPO Blueprint
-[cite_start]The data wrangling process transitions away from basic, local Jupyter scripts into a rigid **Input-Process-Output (IPO)** architectural framework[cite: 233, 234]:
+## 🚀 Features
 
-1. [cite_start]**MODULE 1: INPUT (Securing Fidelity)** * Focuses on identifying data anomalies, neutralizing missing values, and establishing outlier boundaries to protect distribution variance[cite: 215, 216, 238].
-2. **MODULE 2: PROCESS (The Engine)**
-   * [cite_start]Implements block-allocated arrays to execute vectorized math, clean categorical data encodings, and eradicate multi-collinearity[cite: 223, 234].
-3. **MODULE 3: OUTPUT (Contracts & Serving)**
-   * [cite_start]Validates the finalized dataset using **Pandera schemas** and delivers high-fidelity feature stores via **Feast** for production downstream estimators[cite: 158, 230, 234].
-
----
-
-## 🛠️ Key Requirements & Core Functionalities
-
-### 1. Missing Data Decision Matrix (Module 1)
-[cite_start]Instead of applying blanket strategies, the pipeline calculates the exact missingness proportion per feature and applies specific thresholds to mitigate MCAR and MAR scenarios[cite: 243, 253]:
-* [cite_start]**`< 5% Missingness`**: Rows are dropped via optimized `dropna` scripts, ensuring low CPU overhead and zero synthetic data insertion[cite: 246, 255].
-* [cite_start]**`5% to 20% Missingness`**: Implements targeted statistical imputation[cite: 244, 247]. [cite_start]Skewed numerical attributes utilize the **Global Median** to remain robust against extreme values[cite: 249, 255]. [cite_start]Categorical or correlated features use **Group-Wise Sub-Group Conditional Imputation** to preserve sub-population variance patterns[cite: 250, 255].
-* [cite_start]**`> 20% Missingness`**: Employs multi-dimensional estimation using **K-Nearest Neighbors (KNN) Imputation** to cleanly capture complex variable relationships[cite: 245, 251, 252, 255].
-
-### 2. Outlier Neutralization (Module 1)
-[cite_start]To ensure extreme hardware glitches or transcription human errors do not warp regression optimization slopes or inflate variance boundaries [cite: 262][cite_start], the pipeline isolates statistical anomalies using robust, non-parametric boundaries[cite: 262]:
-* **Interquartile Range (IQR) Method**: Formulates mathematical bounds where:
-  [cite_start]$$Lower~Bound = Q1 - 1.5 \times IQR$$ [cite: 260]
-  [cite_start]$$Upper~Bound = Q3 + 1.5 \times IQR$$ [cite: 261]
-* [cite_start]**Z-Score Method**: Standardizes normal distributions to discard values deviating heavily from the population mean[cite: 141, 152].
-
-### 3. Feature Engineering & Extraction (Module 2)
-* [cite_start]Structural extraction of **at least 3 new predictive features** engineered from raw existing data columns to significantly boost downstream predictive power[cite: 155, 179].
+* **Intelligent Imputation:** Uses **Random Forest feature importance** and **K-Nearest Neighbors (KNN)** to fill missing values, providing significantly better accuracy than simple mean/median filling.
+* **Outlier Management:** Automatically detects and caps extreme values using the **Interquartile Range (IQR)** method.
+* **Automated Encoding:** Identifies low-cardinality categorical variables and performs **One-Hot Encoding** automatically.
+* **Multicollinearity Handling:** Identifies and removes highly correlated features (>$0.8$ correlation) to prevent model overfitting.
+* **Schema Security:** Leverages **Pandera** to infer and export data schemas, ensuring data integrity and consistent structure for future workflows.
 
 ---
 
-## 💻 Technical Stack & Skills Demonstrated
-* [cite_start]**Languages & Scripting:** Python [cite: 150]
-* [cite_start]**Core Libraries:** Pandas, NumPy [cite: 156]
-* [cite_start]**Methodologies:** Statistical Data Analysis, Vectorized Pipeline Architecture, Data Preprocessing, Feature Extraction[cite: 156, 158].
-* [cite_start]**Production Validation:** Pandera (Schema Enforcement), Feast (Feature Store Serving)[cite: 158, 230].
+## 🛠 Technologies Used
+
+| Technology | Purpose |
+| --- | --- |
+| **Python** | Core programming language |
+| **Pandas** | Data manipulation and structural cleaning |
+| **NumPy** | Numerical operations and matrix calculations |
+| **Scikit-Learn** | ML-based imputation and preprocessing |
+| **Pandera** | Schema inference and data validation |
 
 ---
-[cite_start]*Developed as part of the DecodeLabs Data Scientist Track (Batch 2026).* [cite: 135, 137]
+
+## 💡 Why Use This Kit?
+
+Data preparation often consumes 80% of a data scientist's time. The **Industrial Training Kit** solves this by:
+
+1. **Reducing Manual Labor:** Automates complex decisions like group-based imputation and feature reduction.
+2. **Improving Model Performance:** Cleans data using advanced algorithms, ensuring the model trains on high-quality, normalized information.
+3. **Standardizing Pipelines:** Produces a consistent, repeatable `refined.csv` output and a documented schema file for every project.
+
+---
+
+## 📋 Requirements
+
+To run this project, you will need to install the following dependencies:
+
+```bash
+pip install pandas numpy scikit-learn pandera
+
+```
+
+---
+
+## 🚀 How to Use
+
+1. Place your dataset file in the project directory.
+2. Update the `df = pd.read_csv(...)` line in the script with your filename.
+3. Run the script:
+```bash
+
+```
+
+
+
+python your_script_name.py
+
+```
+4.  The script will generate `refined.csv` (the cleaned data) and `schema.py` (the validated data scheme).
+
