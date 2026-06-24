@@ -56,8 +56,6 @@ pip install pandas numpy scikit-learn pandera
 
 ```
 
-
-
 python your_script_name.py
 
 ```
