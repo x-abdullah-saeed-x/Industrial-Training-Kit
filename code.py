@@ -133,7 +133,6 @@ print("Multicollinearity Fixed Successfully")
 print("-------------------------------------")
 
 #===================================== PHASE - 3 ====================================
-
 print("Securing Database Design and Scheme using Pandera...")
 
 inferred_schema=pa.infer_schema(df)
@@ -143,6 +142,5 @@ with open("schema.py", "w") as file:
 print("Database Design and Scheme Secured Successfully")
 print("-------------------------------------")
 
-print("Bridging training-serving gap using Feeast...")
-df.to_csv("training_data.csv", index=False)
+df.to_csv("refined.csv", index=False)
 
